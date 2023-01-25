@@ -1,14 +1,33 @@
-interface Expr
-class Num(val value: Int) : Expr
-class Sum(val left: Expr, val right: Expr) : Expr
+import java.lang.StringBuilder
 
-fun eval(e: Expr): Int =
-    when (e) {
-        is Num -> e.value
-        is Sum -> eval(e.left) + eval(e.right)
-        else -> throw IllegalArgumentException("Unknown Expression")
+fun <T> Collection<T>.joinToString(
+    collection: Collection<T>,
+    separator: String = ",",
+    prefix: String = "",
+    postfix: String = ""
+): String {
+    val result = StringBuilder(prefix)
+    for ((index, element) in collection.withIndex()) {
+        if (index > 0) result.append(separator)
+        result.append(element)
     }
-fun main() {
-    println(eval(Sum(Sum(Num(1), Num(2)), Num(4))))
+    result.append(postfix)
 
+    return result.toString()
+}
+
+open class View{
+    open fun click() = println("View Clicked")
+}
+class Button : View() {
+    override fun click() = println("Button Clicked")
+}
+
+fun View.showOff() = println("View")
+fun Button.showOff() = println("Button")
+
+fun main() {
+    val view: View = Button()
+    view.click()
+    view.showOff()
 }
