@@ -1,33 +1,25 @@
-import java.lang.StringBuilder
+class User(val id: Int, val name: String, val address: String){
+    override fun toString(): String = "Id: ${this.id} Name: ${this.name} Address: ${this.address}"
+}
 
-fun <T> Collection<T>.joinToString(
-    collection: Collection<T>,
-    separator: String = ",",
-    prefix: String = "",
-    postfix: String = ""
-): String {
-    val result = StringBuilder(prefix)
-    for ((index, element) in collection.withIndex()) {
-        if (index > 0) result.append(separator)
-        result.append(element)
+fun saveUser(user: User): Boolean {
+    fun validate(
+        value: String,
+        fieldName: String
+    ) {
+        if (value.isEmpty()) {
+            throw IllegalArgumentException("Can't save user ${user.id}: empty $fieldName")
+        }
     }
-    result.append(postfix)
 
-    return result.toString()
+    validate(user.name, "Name")
+    validate(user.address, "Address")
+
+    println(user)
+
+    return true
 }
-
-open class View{
-    open fun click() = println("View Clicked")
-}
-class Button : View() {
-    override fun click() = println("Button Clicked")
-}
-
-fun View.showOff() = println("View")
-fun Button.showOff() = println("Button")
-
 fun main() {
-    val view: View = Button()
-    view.click()
-    view.showOff()
+    val user=User(213431, "mbs", "Sangdo")
+    println("Save: ${saveUser(user)}")
 }
