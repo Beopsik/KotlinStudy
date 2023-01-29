@@ -1,22 +1,22 @@
-data class Golfer(val score: Int, val first: String, val last: String)
+data class Player(val name: String)
+class Team(
+    val name: String,
+    val players: MutableList<Player> = mutableListOf()
+) {
+    fun addPlayer(vararg people: Player) {
+        players.addAll(people)
+    }
+}
 fun main() {
-    val golfers = listOf(
-        Golfer(70," Jack", "Nicklaus"),
-        Golfer(68, "Tom", "Watson"),
-        Golfer(68, "Bubba", "Watson"),
-        Golfer(70, "Tiger", "Woods"),
-        Golfer(68, "Ty", "Webb")
-    )
+    val team = Team("Warriors")
+    team.addPlayer(Player("Curry56"), Player("Thompson"), Player("Durant"), Player("Green"), Player("Cousins"))
 
-    val sorted = golfers.sortedWith(
-        compareBy({it.score}, {it.last}, { it.first})
-    )
-    sorted.forEach { println(it) }
+    for (player in team.players) {
+        println(player)
+    }
 
-    val comparator = compareBy<Golfer>(Golfer::score)
-        .thenBy(Golfer::last)
-        .thenBy(Golfer::first)
-
-    golfers.sortedWith(comparator)
-        .forEach(::println)
+    operator fun Team.iterator(): Iterator<Player> = players.iterator()
+    for (player in team) {
+        println(player)
+    }
 }
