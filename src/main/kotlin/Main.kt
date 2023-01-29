@@ -1,11 +1,22 @@
+data class Golfer(val score: Int, val first: String, val last: String)
 fun main() {
-    val mutableNums = mutableListOf(3, 1, 4, 1, 5, 9)
-    val toList: List<Int> = mutableNums
+    val golfers = listOf(
+        Golfer(70," Jack", "Nicklaus"),
+        Golfer(68, "Tom", "Watson"),
+        Golfer(68, "Bubba", "Watson"),
+        Golfer(70, "Tiger", "Woods"),
+        Golfer(68, "Ty", "Webb")
+    )
 
-    println(toList)
+    val sorted = golfers.sortedWith(
+        compareBy({it.score}, {it.last}, { it.first})
+    )
+    sorted.forEach { println(it) }
 
-    mutableNums.add(2)
+    val comparator = compareBy<Golfer>(Golfer::score)
+        .thenBy(Golfer::last)
+        .thenBy(Golfer::first)
 
-    println(toList)
-    println(mutableNums)
+    golfers.sortedWith(comparator)
+        .forEach(::println)
 }
