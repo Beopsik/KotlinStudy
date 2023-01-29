@@ -1,22 +1,17 @@
-data class Player(val name: String)
-class Team(
-    val name: String,
-    val players: MutableList<Player> = mutableListOf()
-) {
-    fun addPlayer(vararg people: Player) {
-        players.addAll(people)
-    }
-}
+import java.time.LocalDate
+
 fun main() {
-    val team = Team("Warriors")
-    team.addPlayer(Player("Curry56"), Player("Thompson"), Player("Durant"), Player("Green"), Player("Cousins"))
+    val list = listOf("a", LocalDate.now(), 3, 1, 4, "b")
 
-    for (player in team.players) {
-        println(player)
-    }
+//    val strings = list.filterIsInstance<String>()
+//    val ints = list.filterIsInstance<Int>()
+//    val dates = list.filterIsInstance(LocalDate::class.java)
 
-    operator fun Team.iterator(): Iterator<Player> = players.iterator()
-    for (player in team) {
-        println(player)
-    }
+    val strings = list.filterIsInstanceTo(mutableListOf<String>())
+    val ints = list.filterIsInstanceTo(mutableListOf<Int>())
+    val dates = list.filterIsInstanceTo(mutableListOf<LocalDate>())
+
+    println(strings)
+    println(ints)
+    println(dates)
 }
