@@ -1,9 +1,21 @@
-data class Client(val name: String, val postalCode: Int)
+class CountingSet<T>(
+    val innerSet: MutableCollection<T> = HashSet<T>()
+) : MutableCollection<T> by innerSet {
+    var objectsAdded = 0
+    override fun add(element: T): Boolean {
+        objectsAdded++
+        return innerSet.add(element)
+    }
+
+    override fun addAll(elements: Collection<T>): Boolean {
+        objectsAdded += elements.size
+        return innerSet.addAll(elements)
+    }
+}
 
 fun main() {
-    val client1 = Client("mbs", 1)
-    val client2 = Client("mbs", 1)
+    val cSet=CountingSet<Int>()
+    cSet.addAll(listOf(1, 1, 2))
 
-    println(client1)
-    println(client1 == client2)
+    println("${cSet.objectsAdded} objects were added, ${cSet.size} remain")
 }
