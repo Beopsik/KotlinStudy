@@ -1,14 +1,14 @@
-class User(val name: String) {
-    var address: String = "unspecified"
-        set(value: String) {
-            println("""
-                Address was changed for $name:
-                "$field" -> "$value".""".trimIndent())
-            field = value
-        }
+class LengthCounter {
+    var counter: Int = 0
+        private set
+
+    fun addWord(word: String) {
+        counter += word.length
+    }
 }
 
 fun main() {
-    val user = User("mbs")
-    user.address = "Sangdo"
+    val lc = LengthCounter()
+    lc.addWord("word")
+    println(lc.counter)
 }
