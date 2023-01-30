@@ -1,17 +1,14 @@
-import java.io.Serializable
-
-interface State: Serializable
-interface View {
-    fun getCurrentState(): State
-    fun restoreState(state: State) {}
+sealed class Expr {
+    class Num(val value: Int) : Expr()
+    class Sum(val left: Expr, val right: Expr) : Expr()
 }
-class Button : View {
-    override fun getCurrentState(): State = ButtonState()
-    override fun restoreState(state: State) {}
-    inner class ButtonState: State{
-        fun getOuterReference(): Button = this@Button
+
+fun eval(e: Expr): Int =
+    when (e) {
+        is Expr.Num -> e.value
+        is Expr.Sum -> eval(e.left) + eval(e.right)
     }
-}
-fun main() {
 
+fun main() {
+    println(eval(Expr.Sum(Expr.Num(1), Expr.Num(2))))
 }
