@@ -1,17 +1,10 @@
-import java.time.LocalDate
-
+data class Num(val num1: Int, val num2: Int, val num3: Int, val num4: Int, val num5: Int, val num6: Int)
 fun main() {
-    val list = listOf("a", LocalDate.now(), 3, 1, 4, "b")
+    val list = listOf("a", "b", "c", "d", "e", "f", "g", "h")
+    val (a, b, c, d, e) = list
+    println("$a, $b, $c, $d, $e")
 
-//    val strings = list.filterIsInstance<String>()
-//    val ints = list.filterIsInstance<Int>()
-//    val dates = list.filterIsInstance(LocalDate::class.java)
-
-    val strings = list.filterIsInstanceTo(mutableListOf<String>())
-    val ints = list.filterIsInstanceTo(mutableListOf<Int>())
-    val dates = list.filterIsInstanceTo(mutableListOf<LocalDate>())
-
-    println(strings)
-    println(ints)
-    println(dates)
+    val numData = Num(1, 2, 3, 4, 5, 6)
+    val (n1, n2, n3, n4, n5, n6) = numData
+    println("$n1, $n2, $n3, $n4, $n5, $n6")
 }
