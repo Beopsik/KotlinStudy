@@ -1,10 +1,14 @@
-interface User {
-    val email: String
-    val nickname: String
-        get() = email.substringBefore("@")
+class User(val name: String) {
+    var address: String = "unspecified"
+        set(value: String) {
+            println("""
+                Address was changed for $name:
+                "$field" -> "$value".""".trimIndent())
+            field = value
+        }
 }
 
 fun main() {
-    println(PrivateUser("test@kotlinlang.org").nickname)
-    println(SubscribeUser("test@kotlinlang.org").nickname)
+    val user = User("mbs")
+    user.address = "Sangdo"
 }
