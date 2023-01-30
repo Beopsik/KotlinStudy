@@ -1,15 +1,10 @@
-interface Clickable {
-    fun click()
-    fun showOff() = println("I'm clickable")
-}
+abstract class Animated {
+    abstract fun animate()
 
-open class RichButton : Clickable {
-    fun disable() {}
+    open fun stopAnimating() {
+    }
 
-    open fun animate() {}
-
-    final override fun click() {
-        println("Rich Button")
+    fun animatedTwice() {
     }
 }
 fun main() {
