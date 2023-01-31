@@ -1,21 +1,11 @@
-class CountingSet<T>(
-    val innerSet: MutableCollection<T> = HashSet<T>()
-) : MutableCollection<T> by innerSet {
-    var objectsAdded = 0
-    override fun add(element: T): Boolean {
-        objectsAdded++
-        return innerSet.add(element)
-    }
+import java.io.File
 
-    override fun addAll(elements: Collection<T>): Boolean {
-        objectsAdded += elements.size
-        return innerSet.addAll(elements)
+object CaseInsensitiveFileComparator : Comparator<File> {
+    override fun compare(file1: File, file2: File): Int {
+        return file1.path.compareTo(file2.path, ignoreCase = true)
     }
 }
 
 fun main() {
-    val cSet=CountingSet<Int>()
-    cSet.addAll(listOf(1, 1, 2))
-
-    println("${cSet.objectsAdded} objects were added, ${cSet.size} remain")
+    println(CaseInsensitiveFileComparator.compare(File("/user"), File("/user")))
 }
