@@ -1,10 +1,11 @@
-data class Person(val name: String){
-    object NameComparator : Comparator<Person> {
-        override fun compare(p1: Person, p2: Person): Int = p1.name.compareTo(p2.name)
+class User private constructor(val nickname: String) {
+    companion object {
+        fun newSubscribingUser(email: String) = User(email.substringBefore("@"))
+//        fun newFacebookUser(accountId: Int) = User(getFacebookName(accountId))
     }
 }
-
 fun main() {
-    val persons = listOf(Person("Bob"), Person("Alice"))
-    println(persons.sortedWith(Person.NameComparator))
+    val subScribingUser = User.newSubscribingUser("test@gmail.com")
+//    val facebookUser = User.newFacebookUser(3)
+    println(subScribingUser.nickname)
 }
