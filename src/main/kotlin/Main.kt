@@ -1,11 +1,13 @@
-class User private constructor(val nickname: String) {
-    companion object {
-        fun newSubscribingUser(email: String) = User(email.substringBefore("@"))
-//        fun newFacebookUser(accountId: Int) = User(getFacebookName(accountId))
+interface JSONFactory<T>{
+    fun fromJSON(jsonText: String): T
+}
+class Person(val name: String) {
+    companion object Loader : JSONFactory<Person> {
+        override fun fromJSON(jsonText: String): Person = Person(jsonText)
     }
 }
 fun main() {
-    val subScribingUser = User.newSubscribingUser("test@gmail.com")
-//    val facebookUser = User.newFacebookUser(3)
-    println(subScribingUser.nickname)
+    var person = Person.fromJSON("{name: 'Dmitry'}")
+    println(person.name)
+
 }
