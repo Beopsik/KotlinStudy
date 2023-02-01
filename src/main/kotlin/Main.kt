@@ -1,13 +1,10 @@
-interface JSONFactory<T>{
-    fun fromJSON(jsonText: String): T
-}
-class Person(val name: String) {
-    companion object Loader : JSONFactory<Person> {
-        override fun fromJSON(jsonText: String): Person = Person(jsonText)
+class Person(val firstName: String, val lastName: String) {
+    companion object {
     }
 }
-fun main() {
-    var person = Person.fromJSON("{name: 'Dmitry'}")
-    println(person.name)
 
+fun Person.Companion.fromJSON(json: String): Person = Person(json.substringBefore(" "), json.substringAfter(" "))
+fun main() {
+    var person = Person.fromJSON("BeopSik Moon")
+    println("${person.firstName} ${person.lastName}")
 }
