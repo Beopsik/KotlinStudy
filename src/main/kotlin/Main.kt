@@ -1,14 +1,9 @@
-data class Person(val name: String, val age: Int)
-fun main() {
-    val people = listOf(Person("Alice", 29), Person("Bob", 31))
-    println(people.maxBy { it.age })
-
-    val names=people.joinToString(" ") { it.name }
-    println(names)
-
-    val sum = {x: Int, y:Int ->
-        println("Computing the sum of $x and $y...")
-        x+y
+fun printMessageWithPrefix(messages: Collection<String>, prefix: String) {
+    messages.forEach{
+        println("$prefix $it")
     }
-    println(sum(1, 2))
+}
+fun main() {
+    val errors= listOf("403 Forbidden", "404 Not Found")
+    printMessageWithPrefix(errors, "Error:")
 }
