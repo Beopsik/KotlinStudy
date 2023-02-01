@@ -1,10 +1,5 @@
-class Person(val firstName: String, val lastName: String) {
-    companion object {
-    }
-}
-
-fun Person.Companion.fromJSON(json: String): Person = Person(json.substringBefore(" "), json.substringAfter(" "))
+data class Person(val name: String, val age: Int)
 fun main() {
-    var person = Person.fromJSON("BeopSik Moon")
-    println("${person.firstName} ${person.lastName}")
+    val people = listOf(Person("Alice", 29), Person("Bob", 31))
+    println(people.maxBy { it.age })
 }
