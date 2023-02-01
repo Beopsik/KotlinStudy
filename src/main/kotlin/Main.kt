@@ -1,11 +1,10 @@
 data class Person(val name: String, val age: Int)
 fun main() {
-    val people= listOf(Person("Alice", 29), Person("Bob", 31))
-    println(people.filter { it.age >= 30 })
-    println(people.map { it.name })
+    val people= listOf(Person("Alice", 27), Person("Bob", 31))
+    val canBeInClub27={p:Person-> p.age <= 27}
 
-    println(people.filter { it.age>=30 }.map { it.name })
-
-    val maxAge=people.maxBy { it.age }!!.age
-    println(people.filter { it.age == maxAge })
+    println(people.all(canBeInClub27))
+    println(people.any(canBeInClub27))
+    println(people.count(canBeInClub27))
+    println(people.find(canBeInClub27))
 }
