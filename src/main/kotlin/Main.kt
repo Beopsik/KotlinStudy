@@ -1,6 +1,7 @@
-data class Person(val name: String, val age: Int)
+class Book(val title:String, val authors: List<String>)
 fun main() {
-    val people= listOf(Person("Alice", 27), Person("Bob", 31), Person("Carol", 27))
+    val books= listOf(Book("hello", listOf("Elice", "Bob")), Book("money", listOf("Bob", "Carol")))
+    val authors = books.flatMap { it.authors }.toSet()
 
-    println(people.groupBy{it.age })
+    println(authors)
 }
