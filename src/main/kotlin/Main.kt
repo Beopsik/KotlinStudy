@@ -1,6 +1,6 @@
 fun main() {
-    listOf(1, 2, 3, 4).asSequence()
-        .map { println("map($it) "); it * it }
-        .filter { println("filter ($it) "); it % 2 == 0 }
-        .toList()
+    val naturalNumbers = generateSequence(0) { it + 1 }
+    val numbersTo100 = naturalNumbers.takeWhile { it <= 100 }
+    println(numbersTo100.sum())
+
 }
