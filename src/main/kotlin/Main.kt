@@ -1,7 +1,6 @@
-class Book(val title:String, val authors: List<String>)
 fun main() {
-    val books= listOf(Book("hello", listOf("Elice", "Bob")), Book("money", listOf("Bob", "Carol")))
-    val authors = books.flatMap { it.authors }.toSet()
-
-    println(authors)
+    listOf(1, 2, 3, 4).asSequence()
+        .map { println("map($it) "); it * it }
+        .filter { println("filter ($it) "); it % 2 == 0 }
+        .toList()
 }
