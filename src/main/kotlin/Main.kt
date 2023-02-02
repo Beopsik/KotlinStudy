@@ -1,8 +1,6 @@
-import java.io.File
-
+fun createAllDoneRunnable(): Runnable {
+    return Runnable { println("All done!") }
+}
 fun main() {
-    fun File.isInsideHiddenDirectory() = generateSequence(this) { it.parentFile }.any { it.isHidden }
-    val file = File("/Users/svtk/.HiddenDir/a.txt")
-
-    println(file.isInsideHiddenDirectory())
+    createAllDoneRunnable().run()
 }
