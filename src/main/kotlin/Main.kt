@@ -1,19 +1,16 @@
-class Address(val streetAddress: String, val zipCode: Int, val city: String, val country: String)
-class Company(val name: String, val address: Address?)
-class Person(val name: String, val company: Company?)
+class Person(val firstName: String, val lastName: String) {
+    override fun equals(other: Any?): Boolean {
+        val otherPerson = other as? Person ?: return false
 
-fun printShippingLabel(person: Person) {
-    val address = person.company?.address ?: throw IllegalArgumentException("No address")
-    with(address) {
-        println(streetAddress)
-        println("$zipCode $city $country")
+        return otherPerson.firstName == firstName && otherPerson.lastName == lastName
     }
+
+    override fun hashCode(): Int = firstName.hashCode() * 37 + lastName.hashCode()
 }
 
 fun main() {
-    val address = Address("Elsestr. 47", 80687, "Munich", "Germany")
-    val jetbrains = Company("Jetbrains", address)
-    val person = Person("Dmitry", jetbrains)
+    val p1 = Person("Dmitry", "Jemerov")
+    val p2 = Person("Dmitry", "Jemerov")
 
-    printShippingLabel(person)
+    println(p1 == p2)
 }
