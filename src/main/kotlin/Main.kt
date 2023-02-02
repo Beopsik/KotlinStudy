@@ -1,11 +1,9 @@
-import java.lang.StringBuilder
-
-fun alphabet(): String = StringBuilder().apply {
+fun alphabet(): String = buildString {
     for (letter in 'A'..'Z') {
         append(letter)
     }
     append("\nNow I know the alphabet!")
-}.toString()
+}
 
 fun main() {
     println(alphabet())
