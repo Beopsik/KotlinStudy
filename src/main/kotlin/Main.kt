@@ -1,9 +1,12 @@
-fun sendEmailTo(email: String) {
-    println("Send email to $email")
+fun verifyUserInput(input: String?) {
+    if (input.isNullOrBlank()) {
+        println("Please fill in the required fields")
+    }
 }
 
 
 fun main() {
-    val email: String? = "test@email.com"
-    email?.let { sendEmailTo(it) }
+    verifyUserInput("")
+    verifyUserInput("  ")
+    verifyUserInput(null)
 }
