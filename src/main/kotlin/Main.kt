@@ -1,8 +1,6 @@
-fun <T:Any> printHashCode(t: T) {
-    println(t?.hashCode())
+fun yellAt(person: Person) {
+    println((person.name ?: "Anyone").toUpperCase() + "!!!")
 }
-
 fun main() {
-//    printHashCode(null)
-    printHashCode(42)
+    yellAt(Person(null))
 }
