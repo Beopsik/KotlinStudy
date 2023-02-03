@@ -1,7 +1,8 @@
-fun <T> printHashCode(t: T) {
+fun <T:Any> printHashCode(t: T) {
     println(t?.hashCode())
 }
 
 fun main() {
-    printHashCode(null)
+//    printHashCode(null)
+    printHashCode(42)
 }
