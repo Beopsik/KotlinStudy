@@ -1,11 +1,8 @@
-fun fibonacciSequence() = sequence {
-    var terms = Pair(0, 1)
+import java.util.logging.Logger
 
-    while (true) {
-        yield(terms.first)
-        terms = terms.second to terms.first + terms.second
-    }
-}
+class Book(val title: String)
 fun main() {
-    println(fibonacciSequence().take(10).toList())
+    val book = Book("Hello")
+        .also { println(it.title) }
+        .also { Logger.getAnonymousLogger().info(it.toString()) }
 }
