@@ -1,15 +1,11 @@
-class StringPrinter : StringProcessor {
-    override fun process(value: String) {
-        println(value)
-    }
-}
+fun fibonacciSequence() = sequence {
+    var terms = Pair(0, 1)
 
-class NullableStringPrinter : StringProcessor {
-    override fun process(value: String?) {
-        if (value != null) {
-            println(value)
-        }
+    while (true) {
+        yield(terms.first)
+        terms = terms.second to terms.first + terms.second
     }
 }
 fun main() {
+    println(fibonacciSequence().take(10).toList())
 }
