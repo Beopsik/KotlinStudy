@@ -1,8 +1,11 @@
-import java.util.logging.Logger
-
-class Book(val title: String)
+fun processString(str: String?) =
+    str?.let {
+        when {
+            it.isEmpty() -> "Empty"
+            it.isBlank() -> "Blank"
+            else -> it.toUpperCase()
+        }
+    } ?: "Null"
 fun main() {
-    val book = Book("Hello")
-        .also { println(it.title) }
-        .also { Logger.getAnonymousLogger().info(it.toString()) }
+    println(processString("hello"))
 }
